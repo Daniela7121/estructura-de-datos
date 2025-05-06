@@ -16,7 +16,7 @@ public:
     Solicitud(string n, string c, string p, float prom) :
         nombreAlumno(n), carrera(c), preparatoria(p), promedio(prom) {}
 
-    // Sobrecarga de operadores para comparar por promedio
+   
     bool operator==(const Solicitud& other) const {
         return nombreAlumno == other.nombreAlumno;
     }
@@ -35,7 +35,7 @@ public:
         return os;
     }
 
-    // Getters
+
     string getNombre() const { return nombreAlumno; }
     float getPromedio() const { return promedio; }
 };
@@ -46,19 +46,19 @@ private:
 public:
     void altaSolicitud(const Solicitud& s) {
         solicitudes.push_back(s);
-        // Ordenar usando QuickSort (en este caso usamos sort de <algorithm> que generalmente es QuickSort)
+        
         sort(solicitudes.begin(), solicitudes.end());
     }
 
     void buscarSolicitud(const string& nombre) {
-        // Primero buscamos por nombre (búsqueda lineal)
+    
         bool encontrado = false;
         int posicion = -1;
 
         for(size_t i = 0; i < solicitudes.size(); i++) {
             if(solicitudes[i].getNombre() == nombre) {
                 encontrado = true;
-                posicion = i + 1; // Posición en la lista (1-based)
+                posicion = i + 1; // PosiciÃ³n en la lista (1-based)
                 cout << "Datos de la solicitud:\n" << solicitudes[i] << endl;
                 cout << "Lugar en la lista: " << posicion << " de " << solicitudes.size() << endl;
                 break;
@@ -66,11 +66,11 @@ public:
         }
 
         if(!encontrado) {
-            cout << "No se encontró la solicitud. Debe dar de alta una nueva." << endl;
+            cout << "No se encontrÃ³ la solicitud. Debe dar de alta una nueva." << endl;
         }
     }
 
-    // Implementación de búsqueda binaria (requiere lista ordenada)
+
     void busquedaBinaria(const string& nombre) {
         int izquierda = 0;
         int derecha = solicitudes.size() - 1;
@@ -81,7 +81,7 @@ public:
 
             if(solicitudes[medio].getNombre() == nombre) {
                 encontrado = true;
-                cout << "Datos de la solicitud (búsqueda binaria):\n" << solicitudes[medio] << endl;
+                cout << "Datos de la solicitud (bÃºsqueda binaria):\n" << solicitudes[medio] << endl;
                 cout << "Lugar en la lista: " << medio + 1 << " de " << solicitudes.size() << endl;
                 break;
             }
@@ -94,7 +94,7 @@ public:
         }
 
         if(!encontrado) {
-            cout << "No se encontró la solicitud con búsqueda binaria." << endl;
+            cout << "No se encontrÃ³ la solicitud con bÃºsqueda binaria." << endl;
         }
     }
 };
@@ -106,7 +106,7 @@ int main() {
     do {
         cout << "\nMenu:\n1. Dar de alta solicitud\n2. Buscar solicitud\n3. Salir\nOpcion: ";
         cin >> opcion;
-        cin.ignore(); // Limpiar el buffer
+        cin.ignore(); 
 
         if(opcion == 1) {
             string nombre, carrera, prepa;
@@ -131,7 +131,7 @@ int main() {
             getline(cin, nombre);
 
             lista.buscarSolicitud(nombre);
-            // También podríamos llamar a lista.busquedaBinaria(nombre);
+           
         }
     } while(opcion != 3);
 
